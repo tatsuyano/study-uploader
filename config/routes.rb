@@ -1,8 +1,9 @@
+# -*- coding: utf-8 -*-
 Rails.application.routes.draw do
-  devise_for :users
+  root to: "home#index"
   get 'home/index'
-
   get 'home/show'
 
-  root to: "home#index"
+  devise_for :users, path_names: { sign_in: "login", sign_out: "logout"}
+
 end
