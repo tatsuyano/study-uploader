@@ -18,6 +18,7 @@
 #  username               :string
 #  provider               :string
 #  uid                    :string
+#  image                  :string
 #
 # Indexes
 #

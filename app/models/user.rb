@@ -19,6 +19,7 @@
 #  username               :string
 #  provider               :string
 #  uid                    :string
+#  image                  :string
 #
 # Indexes
 #
@@ -48,6 +49,7 @@ class User < ActiveRecord::Base
       # ここでは設定は必要ない
       user.username = auth.info.nickname # twitterで利用している名前が入る
       user.email = auth.info.email # twitterの場合入らない
+      user.image = auth.info.image
     end
   end
   
