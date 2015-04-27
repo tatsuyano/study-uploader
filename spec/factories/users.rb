@@ -16,6 +16,8 @@
 #  created_at             :datetime
 #  updated_at             :datetime
 #  username               :string
+#  provider               :string
+#  uid                    :string
 #
 # Indexes
 #
