@@ -1,5 +1,14 @@
 ---
 ja:
+  activerecord:
+    attributes:
+      user:
+        username: 'ユーザーネーム'
+        email: 'Eメール'
+        password: 'パスワード'
+        password_confirmation: 'パスワード(確認)'
+        current_password: '現在のパスワード'
+        remember_me: 'ログインしたままにする'
   date:
     abbr_day_names:
     - 日
