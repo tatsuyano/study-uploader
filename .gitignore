@@ -19,3 +19,6 @@
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
+
+# Bower components
+vendor/assets/bower_components/*

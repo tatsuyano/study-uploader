@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 source 'https://rubygems.org'
 
+# nodeモジュールの管理
+gem "bower-rails"
+
 # 認証
 gem 'devise'
 gem 'omniauth-twitter'

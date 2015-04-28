@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
@@ -8,7 +9,10 @@ Bundler.require(*Rails.groups)
 
 module StudyUploader2
   class Application < Rails::Application
-    
+
+    # Bower
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
+
     # Set timezone
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
