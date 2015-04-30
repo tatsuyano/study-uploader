@@ -14,7 +14,7 @@
   <div class="field">
     <% if @product.image? %>
       <div class="thumbnail">
-        <%= image_tag @product.image.url %>
+        <%= image_tag @product.thumb.url %>
       </div>
     <% end %><br>
     <%= f.label :image %><br>

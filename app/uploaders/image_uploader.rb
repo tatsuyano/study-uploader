@@ -1,9 +1,8 @@
 # encoding: utf-8
-
 class ImageUploader < CarrierWave::Uploader::Base
 
-  # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
+  # リサイズしたり画像形式を変更するのに必要
+  include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
@@ -31,21 +30,32 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
-  # Create different versions of your uploaded files:
-  # version :thumb do
-  #   process :resize_to_fit => [50, 50]
-  # end
+  # 画像の上限を700pxにする
+  process :resize_to_limit => [700, 700]
 
-  # Add a white list of extensions which are allowed to be uploaded.
-  # For images you might use something like this:
-  # def extension_white_list
-  #   %w(jpg jpeg gif png)
-  # end
+  # 保存形式をJPGにする
+  process :convert => 'jpg'
 
-  # Override the filename of the uploaded files:
-  # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  # def filename
-  #   "something.jpg" if original_filename
-  # end
+  # サムネイルを生成する設定
+  version :thumb do
+    process :resize_to_limit => [300, 300]
+  end
 
+  # jpg,jpeg,gif,pngしか受け付けない
+  def extension_white_list
+    %w(jpg jpeg gif png)
+  end
+
+  # 拡張子が同じでないとGIFをJPGとかにコンバートできないので、ファイル名を変更
+  def filename
+    super.chomp(File.extname(super)) + '.jpg' if original_filename.present?
+  end
+
+  # ファイル名は日本語が入ってくると嫌なので、下記のようにしてみてもいい。
+  # 日付(20131001.jpgみたいなファイル名)で保存する
+  def filename
+    time = Time.now
+    name = time.strftime('%Y%m%d%H%M%S') + '.jpg'
+    name.downcase
+  end
 end

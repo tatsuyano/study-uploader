@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 # 画像のアップロード周り
 gem "carrierwave"
+gem "rmagick"
 
 # nodeモジュールの管理
 gem "bower-rails"
