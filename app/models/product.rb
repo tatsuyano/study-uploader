@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # == Schema Information
 #
 # Table name: products
@@ -16,4 +17,5 @@
 class Product < ActiveRecord::Base
   mount_uploader :image, ImageUploader
   belongs_to :user
+  scope :mine, ->(user_id) {where("user_id = ?",user_id)}
 end
