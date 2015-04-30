@@ -1,0 +1,19 @@
+input[type="file"] {
+    display: none;
+}
+.thumb {
+    height: 75px;
+    border: 1px solid #000;
+    margin: 10px 5px 0 0;
+}
+#drag-area {
+    /*color: #000000;*/
+    background-color: #D3D3D3;
+    font-size: xx-large;
+    height: 160px;
+    text-align : center;
+}
+
+#drag-area #btn{
+    font-size: small;
+}

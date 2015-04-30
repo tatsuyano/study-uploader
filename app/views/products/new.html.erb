@@ -1,31 +1,20 @@
-<style>
- input[type="file"] {
-     display: none;
- }
-
- .thumb {
-     height: 75px;
-     border: 1px solid #000;
-     margin: 10px 5px 0 0;
- }
-
- #drag-area {
-     color: #000000;
-     background-color: #e0ffff;
- }
-</style>
-
-<div id="drag-area">
-    <p>アップロードするファイルをドロップ</p>
-    <p>または</p>
-    <div class="btn-group">
-        <input type="file" multiple>
-        <button id="btn">ファイルを選択</button>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>画像登録</h2>
+        </div>
+        <div class="col-md-12" style="margin-bottom:20px;">
+            <div id="drag-area">
+                <p>アップロードしたいファイルを、ここにドロップ＆ドロップ</p>
+                <div class="btn-group">
+                    <input type="file" multiple>
+                    <button id="btn">ファイルを選択</button>
+                </div>
+            </div>
+            <output id="list"></output>
+        </div>
     </div>
 </div>
-
-<output id="list"></output>
-
 <script>
  $(function(){
      /*================================================

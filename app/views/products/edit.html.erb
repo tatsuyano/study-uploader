@@ -1,6 +1,11 @@
-<h1>Editing Product</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @product %> |
-<%= link_to 'Back', products_path %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>画像更新</h2>
+        </div>
+        <%= render 'form' %>
+        <div class="col-md-12" style="margin-top:20px;">
+            <%= link_to 'Show', @product %> | <%= link_to 'Back', products_path %>
+        </div>
+    </div>
+</div>
