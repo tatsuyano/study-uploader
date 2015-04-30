@@ -1,5 +1,107 @@
-<h1>New Product</h1>
+<style>
+ input[type="file"] {
+     display: none;
+ }
 
-<%= render 'form' %>
+ .thumb {
+     height: 75px;
+     border: 1px solid #000;
+     margin: 10px 5px 0 0;
+ }
 
-<%= link_to 'Back', products_path %>
+ #drag-area {
+     color: #000000;
+     background-color: #e0ffff;
+ }
+</style>
+
+<div id="drag-area">
+    <p>アップロードするファイルをドロップ</p>
+    <p>または</p>
+    <div class="btn-group">
+        <input type="file" multiple>
+        <button id="btn">ファイルを選択</button>
+    </div>
+</div>
+
+<output id="list"></output>
+
+<script>
+ $(function(){
+     /*================================================
+        ファイルをドロップした時の処理
+     =================================================*/
+     $('#drag-area').bind('drop', function(e){
+         e.preventDefault(); // デフォルトの挙動を停止
+
+         var files = e.originalEvent.dataTransfer.files;
+         handleFileSelect(files);
+
+     }).bind('dragenter', function(){
+         return false; // デフォルトの挙動を停止
+     }).bind('dragover', function(){
+         return false; // デフォルトの挙動を停止
+     });
+
+     /*================================================
+        ダミーボタンを押した時の処理
+     =================================================*/
+     $('#btn').click(function() {
+         $('input[type="file"]').click(); // ダミーボタンとinput[type="file"]を連動
+     });
+
+     $('input[type="file"]').change(function(e){
+         var files = e.target.files;
+         handleFileSelect(files);
+     });
+ });
+
+ function handleFileSelect(files) {
+
+     for (var i = 0, f; f = files[i]; i++) {
+
+         if (!f.type.match('image.*')) { continue; }
+
+         var reader = new FileReader();
+         reader.onload = (function(theFile) {
+             return function(e) {
+                 // Render thumbnail.
+                 var span = document.createElement('span');
+                 span.innerHTML = ['<img class="thumb" src="', e.target.result,
+                                   '" title="', escape(theFile.name), '"/>'].join('');
+                 document.getElementById('list').insertBefore(span, null);
+             };
+         })(f);
+
+         // Read in the image file as a data URL.
+         reader.readAsDataURL(f);
+     }
+
+     uploadFiles(files);
+ }
+
+ function uploadFiles(files) {
+     var fd = new FormData();
+     var filesLength = files.length;
+
+     // ファイル情報を追加
+     for (var i = 0; i < filesLength; i++) {
+         fd.append("files[]", files[i]);
+     }
+
+     $.ajax({
+         url: '/products',
+         type: 'POST',
+         data: fd,
+         dataType: "html",
+         processData: false,
+         contentType: false,
+         success: function(data) {
+             console.log('ファイルがアップロードされました。');
+         },
+         error:function() {
+             console.log('error');
+         }
+     });
+ }
+</script>

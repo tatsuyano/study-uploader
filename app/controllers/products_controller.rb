@@ -25,17 +25,14 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
-    @product = Product.new(product_params)
-    @product.user_id = current_user.id
+    files = params[:files]
+    files.each do |image|
+      @product = Product.new({ image: image, user_id: current_user.id })
+      @product.save
+    end
 
     respond_to do |format|
-      if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
-        format.json { render :show, status: :created, location: @product }
-      else
-        format.html { render :new }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
-      end
+      format.html { render :new }
     end
   end
 
