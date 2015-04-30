@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 source 'https://rubygems.org'
 
+# 画像のアップロード周り
+gem "carrierwave"
+
 # nodeモジュールの管理
 gem "bower-rails"
 
