@@ -14,11 +14,30 @@
         </div>
 
         <% @products.each do |product| %>
-            <div class="col-md-2 sample">
-                <a href="<%= edit_product_path(product) %>" class="thumbnail">
+            <div class="col-md-2">
+                <a href="#" class="thumbnail" data-toggle="modal" data-target="#myModal" data-url="<%= product.image %>">
                     <img src="<%= product.image.thumb %>">
                 </a>
             </div>
         <% end %>
     </div>
 </div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body" style="text-align:center;">
+                <img id="myModalImage" width="80%"/>
+            </div>
+            <div class="modal-footer">
+                <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+                <button type="button" class="btn btn-danger">Delete image</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+$('#myModal').on('show.bs.modal', function (e) {
+    thumbnail = e.relatedTarget;
+    $("#myModalImage").attr("src",thumbnail.dataset.url);
+})
+</script>
