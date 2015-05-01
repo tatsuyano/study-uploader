@@ -10,12 +10,12 @@
         </div>
 
         <div class="col-md-12" style="margin-bottom:20px;">
-            <%= link_to 'New Product', new_product_path %>
+            <%= link_to 'New Product', products_new_path %>
         </div>
 
         <% @products.each do |product| %>
             <div class="col-md-2">
-                <a href="#" class="thumbnail" data-toggle="modal" data-target="#myModal" data-url="<%= product.image %>">
+                <a href="#" class="thumbnail" data-toggle="modal" data-target="#myModal" data-url="<%= product.image %>" data-id="<%= product.id %>">
                     <img src="<%= product.image.thumb %>">
                 </a>
             </div>
@@ -29,15 +29,20 @@
                 <img id="myModalImage" width="80%"/>
             </div>
             <div class="modal-footer">
-                <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-                <button type="button" class="btn btn-danger">Delete image</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" id="myModalDelete">Delete image</button>
             </div>
         </div>
     </div>
 </div>
 <script>
-$('#myModal').on('show.bs.modal', function (e) {
+$('#myModal').on('show.bs.modal',function(e){
     thumbnail = e.relatedTarget;
     $("#myModalImage").attr("src",thumbnail.dataset.url);
+
+    $("#myModalDelete").click(function(){
+        location.href = "/products/" + thumbnail.dataset.id;
+        return false;
+    });
 })
 </script>
