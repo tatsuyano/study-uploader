@@ -5,12 +5,12 @@ default: &default
 
 development:
   <<: *default
-  database: study-uploader2
+  database: study-uploader
   username: postgres
   password: postgres
 
 test:
   <<: *default
-  database: study-uploader2_test
+  database: study-uploader_test
   username: postgres
   password: postgres
