@@ -52,8 +52,12 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    time = Time.now
-    name = time.strftime('%Y%m%d%H%M') + '.jpg'
+    if @model.created_at.present?
+      name = @model.created_at.strftime('%Y%m%d%H%M%S') + '.jpg'
+    else
+      time = Time.now
+      name = time.strftime('%Y%m%d%H%M%S') + '.jpg'
+    end
     name.downcase
   end
 end
