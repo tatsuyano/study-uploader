@@ -31,15 +31,17 @@
                     <% end %>
                 </ul>
                 <% if user_signed_in? %>
-                    <ul class="nav navbar-nav navbar-right">
-                        <div class="row">
-                            <div class="col-xs-6 col-md-6">
-                                <a href="#" class="thumbnail">
-                                    <img src="<%= current_user.image %>" />
-                                </a>
+                    <% if current_user.image %>
+                        <ul class="nav navbar-nav navbar-right">
+                            <div class="row">
+                                <div class="col-xs-6 col-md-6">
+                                    <a href="#" class="thumbnail">
+                                        <img src="<%= current_user.image %>" />
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    </ul>
+                        </ul>
+                    <% end %>
                 <% end %>
             </div><!--/.nav-collapse -->
         </div>
