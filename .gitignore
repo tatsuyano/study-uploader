@@ -25,4 +25,3 @@ vendor/assets/bower_components/*
 
 # Carrierwave
 public/uploads/*
-config/initializers/carrierwave.rb
