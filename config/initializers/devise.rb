@@ -4,7 +4,7 @@
 Devise.setup do |config|
 
   # omniauth(twitter)
-  config.omniauth :twitter, "oWaIJpkiEe5Cv8Faz15KGrXmk", "ew82T8P2DT3z2L4uZwIWwO6K29tESCiBip8LWWz47Q8cGp0Z6L"
+  config.omniauth :twitter, ENV["TWITTER_API_KEY"],ENV["TWITTER_API_SECRET"]
   
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
