@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 source 'https://rubygems.org'
 
+# 環境変数
+gem 'dotenv-rails'
+
 # 画像のアップロード周り
 gem "carrierwave"
 gem "rmagick"
