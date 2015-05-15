@@ -20,6 +20,8 @@
 #  provider               :string
 #  uid                    :string
 #  image                  :string
+#  failed_attempts        :integer          default(0), not null
+#  locked_at              :datetime
 #
 # Indexes
 #
@@ -35,6 +37,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
+         :lockable,
          :omniauthable, omniauth_providers: [:twitter]
 
   validates :username, presence: true, uniqueness: true

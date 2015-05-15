@@ -19,6 +19,8 @@
 #  provider               :string
 #  uid                    :string
 #  image                  :string
+#  failed_attempts        :integer          default(0), not null
+#  locked_at              :datetime
 #
 # Indexes
 #
